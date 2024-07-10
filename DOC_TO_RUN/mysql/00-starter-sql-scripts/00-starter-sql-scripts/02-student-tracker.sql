@@ -15,3 +15,5 @@ CREATE TABLE `student` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
+-- ALTER TABLE student_tracker.student AUTO_INCREMENT=3000;
+TRUNCATE student_tracker.student;
