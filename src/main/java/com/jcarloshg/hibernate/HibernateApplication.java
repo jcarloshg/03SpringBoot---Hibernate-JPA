@@ -21,17 +21,42 @@ public class HibernateApplication {
 	public CommandLineRunner commandLineRunner(StudentDAO studentDAO) {
 		return runner -> {
 			// createStudent(studentDAO);
+			createManyStudent(studentDAO);
 			// readStudent(studentDAO);
 			// getAllByQuery(studentDAO);
 			// getStudentByLastName(studentDAO);
-			updateStudent(studentDAO);
+			// updateStudent(studentDAO);
+			// deleteStudent(studentDAO);
+			// deleteAllStudent(studentDAO);
 		};
 	}
 
+	private void createManyStudent(StudentDAO studentDAO) {
+
+		Student student01 = new Student("Rogelio", "Sanchez", "Rogelio01@gmail.com");
+		Student student02 = new Student("Andres", "Lopez", "Andres01@gmail.com");
+		Student student03 = new Student("Paula", "Rodriguez", "Paula01@gmail.com");
+
+		studentDAO.save(student01);
+		studentDAO.save(student02);
+		studentDAO.save(student03);
+	}
+
+	private void deleteAllStudent(StudentDAO studentDAO) {
+		int studentDeleted = studentDAO.deleteAll();
+		System.err.println("[Student deleted] = " + studentDeleted);
+	}
+
+	private void deleteStudent(StudentDAO studentDAO) {
+		int idToDelete = 4;
+		studentDAO.deleteByID(idToDelete);
+	}
+
 	private void updateStudent(StudentDAO studentDAO) {
-		int id = 3;
+		int id = 4;
 		Student student = studentDAO.findByID(id);
-		student.setFirst_name("Pedro Pedro");
+		student.setFirst_name("Scooby");
+		student.setLast_name("Doo");
 		studentDAO.update(student);
 		System.out.println("This is the student updated: " + student.toString());
 	}

@@ -59,10 +59,30 @@ public class StudentMySQL implements StudentDAO {
         return query.getResultList();
     }
 
+    // ============================================================
+    // UPDATE
+    // ============================================================
     @Override
     @Transactional
     public void update(Student student) {
         entityManager.merge(student);
+    }
+
+    // ============================================================
+    // DELETE
+    // ============================================================
+    @Override
+    @Transactional
+    public void deleteByID(Integer id) {
+        Student student = this.entityManager.find(Student.class, id);
+        entityManager.remove(student);
+    }
+
+    @Override
+    @Transactional
+    public int deleteAll() {
+        int rowsAffected = entityManager.createQuery("DELETE FROM Student").executeUpdate();
+        return rowsAffected;
     }
 
 }

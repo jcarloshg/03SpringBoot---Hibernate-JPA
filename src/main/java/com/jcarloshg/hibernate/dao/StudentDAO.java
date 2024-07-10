@@ -11,11 +11,17 @@ public interface StudentDAO {
 
     // Read
     Student findByID(Integer id);
+
     List<Student> findAll();
+
     List<Student> findByLastName(String lastName);
 
     // Update
     void update(Student student);
 
     // Delete
+    void deleteByID(Integer id);
+
+    int deleteAll();
+
 }
